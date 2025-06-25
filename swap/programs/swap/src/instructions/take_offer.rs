@@ -82,10 +82,11 @@ pub fn send_wanted_tokens_to_maker(context: &Context<TakeOffer>) -> Result<()> {
         )
 }
 
-pub fn withdraw_and_close_vault(context: &Context<TakeOffer>)->Result<()>{
-  
+pub fn withdraw_and_close_vault(context: Context<TakeOffer>)->Result<()>{
+
+  let binding = context.accounts.maker.to_account_info().key();
   let seeds = &[b"offer",
-    context.accounts.maker.to_account_info().key().as_ref(),
+    binding.as_ref(),
     &context.accounts.offer.id.to_le_bytes()[..],
     &[context.accounts.offer.bump]
     ];
