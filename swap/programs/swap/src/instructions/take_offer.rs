@@ -114,7 +114,7 @@ pub fn withdraw_and_close_vault(context: Context<TakeOffer>)->Result<()>{
   
   let accounts = CloseAccount{
     account: context.accounts.vault.to_account_info(),
-    destination: context.accounts.taker.to_account_info(),
+    destination: context.accounts.maker.to_account_info(),
     authority: context.accounts.offer.to_account_info(),
   };
 
